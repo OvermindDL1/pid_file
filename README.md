@@ -4,8 +4,7 @@ Manages a simple OS PID file for this BEAM system.
 
 In other words it just makes a file whose sole contents is the Operating System PID of the running BEAM process.
 
-It should also auto-clean old PID files on load, and clear the PID file on a 'proper' shutdown, but even if not a proper
-shutdown then it will still clear it properly next time.
+It should also auto-clean old PID files on load, and clear the PID file on a 'proper' shutdown, but even if not a proper shutdown then it will still clear it properly next time.
 
 Hex:  https://hex.pm/packages/pid_file
 
