@@ -15,6 +15,7 @@ defmodule PidFile.Worker do
     file =
       case opts[:file] do
         file when is_binary(file) -> file
+        [_ | _] = iolist -> :erlang.iolist_to_binary(iolist)
         nonfile -> throw {:unsupport_option, __MODULE__, :init, :file, nonfile, opts}
       end
     cleanup_pid(file)

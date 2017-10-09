@@ -4,7 +4,7 @@ defmodule PidFile.Mixfile do
   def project do
     [
       app: :pid_file,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.5",
       description: description(),
       package: package(),
