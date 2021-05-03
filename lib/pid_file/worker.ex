@@ -1,15 +1,16 @@
 defmodule PidFile.Worker do
-  @moduledoc """
-  """
+
+  @moduledoc false
 
   use GenServer
+
   require Logger
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, [name: opts[:name]])
   end
 
-
+  @impl true
   def init(opts) do
     Process.flag(:trap_exit, true)
     file =
@@ -23,28 +24,24 @@ defmodule PidFile.Worker do
     {:ok, file}
   end
 
-
+  @impl true
   def terminate(reason, file) do
     cleanup_pid(file)
     reason
   end
 
-
-  defp get_pid() do
-    :os.getpid() # charlist
-    |> to_string()
-    |> String.to_integer()
+  if Version.match?(System.version(), ">= 1.9.0") do
+    defp get_pid(), do: System.pid()
+  else
+    defp get_pid(), do: to_string(:os.getpid())
   end
 
-
   defp update_pid(file) do
-    pid =
-      get_pid()
-      |> to_string()
-    File.write!(file, pid, [:write, :binary])
+    File.write!(file, get_pid(), [:write, :binary])
   end
 
   defp cleanup_pid(file) do
     File.rm(file)
   end
+
 end
