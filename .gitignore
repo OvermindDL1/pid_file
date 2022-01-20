@@ -21,3 +21,5 @@ erl_crash.dump
 
 # And ignore test artifacts
 *.pid
+
+mix.lock
