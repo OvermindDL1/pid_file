@@ -11,7 +11,7 @@ Hex:  https://hex.pm/packages/pid_file
 ## Installation
 
 ```elixir
-    {:pid_file, "~> 0.1.0"},
+    {:pid_file, "~> 0.2.0"},
 ```
 
 ## Setup
